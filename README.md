@@ -1,0 +1,5 @@
+# Othello-ratkaisija
+
+## Dokumentaatio
+
+## Viikkoraportit
