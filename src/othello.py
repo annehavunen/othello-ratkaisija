@@ -6,36 +6,6 @@ class Othello:
         self.vuorot = 1
         self.ei_siirtoja = 0
 
-    def kaynnista(self):
-        while True:
-            print(f"Lopeta: q. Syöte esim.: d3. Vuoron numero: {self.vuorot}")
-            self.laske_tilanne()
-            print(f"x: {self.mustat}, o: {self.valkoiset}")
-            for rivi in self.pelilauta:
-                for ruutu in rivi:
-                    print(ruutu, end=" ")
-                print()
-
-            sallitut = self.sallitut()
-            if not sallitut:
-                if self.ei_siirtoja == self.vuorot - 1: # kummallakaan pelaajalla ei ole mahdollisia siirtoja
-                    break
-                else:
-                    self.ei_siirtoja = self.vuorot
-                    self.vaihda_vuoroa()
-            else:
-                sallitut.sort()
-                print("sallitut siirrot: ", sallitut)
-                syote = input(f"{self.pelaaja}, anna syöte: ")
-                if syote == "q":
-                    break
-                elif syote not in sallitut:
-                    print("Siirto ei ole sallittu.")
-                else:
-                    print("Siirto: ", syote)
-                    self.tee_siirto(syote)
-                    self.vaihda_vuoroa()
-    
     def sallitut(self):
         sallitut = []
         for i in range(9):
@@ -317,3 +287,24 @@ class Othello:
                 self.pelilauta[rivi][sarake] = oma_maa
                 rivi += 1
                 sarake += 1
+
+    def tulosta_pelilauta(self):
+        for rivi in self.pelilauta:
+            for ruutu in rivi:
+                print(ruutu, end=" ")
+            print()
+
+    def hae_vuorot(self):
+        return self.vuorot
+
+    def hae_mustat_ja_valkoiset(self):
+        return self.mustat, self.valkoiset
+
+    def hae_pelaaja(self):
+        return self.pelaaja
+
+    def hae_ei_siirtoja(self):
+        return self.ei_siirtoja
+
+    def aseta_ei_siirtoja(self, vuorot):
+        self.ei_siirtoja = vuorot

@@ -1,18 +1,11 @@
-from othello import Othello
+from ui import UI
+from pelilauta import Pelilauta
 
-# luo pelilauta
+
 def main():
-    pelilauta = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
-        [1, "_", "_", "_", "_", "_", "_", "_", "_"],
-        [2, "_", "_", "_", "_", "_", "_", "_", "_"],
-        [3, "_", "_", "_", "_", "_", "_", "_", "_"],
-        [4, "_", "_", "_", "o", "x", "_", "_", "_"],
-        [5, "_", "_", "_", "x", "o", "_", "_", "_"],
-        [6, "_", "_", "_", "_", "_", "_", "_", "_"],
-        [7, "_", "_", "_", "_", "_", "_", "_", "_"],
-        [8, "_", "_", "_", "_", "_", "_", "_", "_"]]
-    othello = Othello(pelilauta)
-    othello.kaynnista()
+    pelilauta = Pelilauta().hae_pelilauta()
+    peli = UI(pelilauta)
+    peli.kaynnista()
 
 if __name__ == "__main__":
     main()
