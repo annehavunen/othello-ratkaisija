@@ -110,3 +110,6 @@ class Othello:
     def hae_mustat_ja_valkoiset(self):
         self.laske_tilanne()
         return self.mustat, self.valkoiset
+
+    def hae_pelilauta(self):
+        return self.pelilauta
