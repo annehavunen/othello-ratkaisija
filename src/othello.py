@@ -60,7 +60,7 @@ class Othello:
         sarake = lahtopaikka[1] + liike[1]
         if 1 <= rivi <= 8 and 1 <= sarake <= 8 and self.pelilauta[rivi][sarake] == vastustajan_maa:
             rivi += liike[0]
-            sarake += liike[1]            
+            sarake += liike[1]
             while 1 <= rivi <= 8 and 1 <= sarake <= 8:
                 if self.pelilauta[rivi][sarake] == vastustajan_maa:
                     rivi += liike[0]
@@ -101,7 +101,8 @@ class Othello:
 
     def kaanna_suunta(self, lahtopaikka, liike, vastustajan_maa, oma_maa):
         """Aloittaa lähtöpaikasta ja kääntää vastustajan maat, kunnes vastaan tulee oma maa.
-        Etenee liikkeen ilmaisemaan suuntaan. Funktio tutki_suunta tarkistaa, onko suunnassa käännettävää.
+        Etenee liikkeen ilmaisemaan suuntaan.
+        Funktio tutki_suunta tarkistaa, onko suunnassa käännettävää.
 
         Args:
             lahtopaikka: Tuple, jossa on aloittavat koordinaatit pelilaudalla.
