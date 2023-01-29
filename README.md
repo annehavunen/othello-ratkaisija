@@ -1,5 +1,7 @@
 # Othello-ratkaisija
 
+![GHA workflow badge](https://github.com/ahavunen/othello-ratkaisija/workflows/CI/badge.svg)
+
 ## Dokumentaatio
 
 - [Määrittelydokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/maarittelydokumentti.md)
