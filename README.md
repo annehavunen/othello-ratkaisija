@@ -10,3 +10,4 @@
 ## Viikkoraportit
 
 - [1. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti1.md)
+- [2. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti2.md)
