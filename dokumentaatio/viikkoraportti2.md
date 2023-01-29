@@ -26,5 +26,6 @@ Sain tämän ratkaisun helpommin toimimaan edes jotenkuten.
 
 Ensi viikon osalta en ole varma, miten edistän koodia, koska kysymyksiä on niin paljon. Yritänkö lisätä alfa-beeta-karsinnan?
 Pitäisikö minun parannella ja/tai korjata minimax-algoritmia? Teenkö kenties jotain muuta?
+Pitäisikö pylint-tarkistukset lisätä myös GitHub Actionsiin, jolloin ne suoritetaan aina, kun koodia pushataan?
 
 Käytetty työaika: 17 h
