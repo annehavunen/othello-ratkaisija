@@ -174,3 +174,46 @@ class Othello:
 
     def hae_pelilauta(self):
         return self.pelilauta
+
+    def hae_kulmapaikat(self, maa):
+        kulmapaikat = 0
+        if self.pelilauta[1][1] == maa:
+            kulmapaikat += 1
+        if self.pelilauta[1][8] == maa:
+            kulmapaikat += 1
+        if self.pelilauta[8][1] == maa:
+            kulmapaikat += 1
+        if self.pelilauta[8][8] == maa:
+            kulmapaikat += 1
+        return kulmapaikat
+
+    def hae_reunapaikat(self, maa):
+        reunapaikat = 0
+        for sarake in range(2, 8):
+            if self.pelilauta[1][sarake] == maa:
+                reunapaikat += 1
+            if self.pelilauta[8][sarake] == maa:
+                reunapaikat += 1
+        for rivi in range(2, 8):
+            if self.pelilauta[rivi][1] == maa:
+                reunapaikat += 1
+            if self.pelilauta[rivi][8] == maa:
+                reunapaikat += 1
+        return reunapaikat
+
+    def hae_sallittujen_maara(self, maa):
+        if maa == "x":
+            if self.pelaaja == "P1":
+                sallitut = self.sallitut()
+            else:
+                self.vaihda_vuoroa()
+                sallitut = self.sallitut()
+                self.vaihda_vuoroa()
+        else:
+            if self.pelaaja == "P2":
+                sallitut = self.sallitut()
+            else:
+                self.vaihda_vuoroa()
+                sallitut = self.sallitut()
+                self.vaihda_vuoroa()
+        return len(sallitut)

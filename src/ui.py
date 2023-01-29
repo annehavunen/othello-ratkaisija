@@ -1,9 +1,11 @@
 from othello import Othello
+from othello_ai import OthelloAI
 
 
 class UI:
     def __init__(self, pelilauta):
         self.othello = Othello(pelilauta)
+        self.othello_ai = OthelloAI()
 
     def kaynnista(self):
         while True:
@@ -32,5 +34,13 @@ class UI:
                     self.othello.vaihda_vuoroa()
 
     def hae_siirto(self):
-        syote = input(f"{self.othello.hae_pelaaja()}, anna syöte: ")
+        if self.othello.hae_pelaaja() == "valkoinen":
+            lauta = self.othello.hae_pelilauta()
+            kopiolauta = [[lauta[x][y] for y in range(len(lauta[0]))] for x in range(len(lauta))]
+            kopio_othello = Othello(kopiolauta)
+            kopio_othello.vaihda_vuoroa()
+            syote = self.othello_ai.hae_seuraava_siirto(3, kopio_othello, True)
+        else:
+            syote = input(f"{self.othello.hae_pelaaja()}, anna syöte: ")
+
         return syote
