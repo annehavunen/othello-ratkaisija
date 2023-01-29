@@ -1,6 +1,6 @@
 # Othello-ratkaisija
 
-![GHA workflow badge](https://github.com/ahavunen/othello-ratkaisija/workflows/CI/badge.svg)
+![GHA workflow badge](https://github.com/annehavunen/othello-ratkaisija/workflows/CI/badge.svg)
 
 ## Dokumentaatio
 
