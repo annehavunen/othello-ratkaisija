@@ -129,23 +129,15 @@ class Othello:
                 print(ruutu, end=" ")
             print()
 
-    def game_over(self, pelaaja):
+    def game_over(self):
         """Tutkii, onko pelissä mahdollista tehdä enää siirtoja.
-
-        Args:
-            pelaaja: Pelaaja, jolta ensin tutkitaan mahdolliset siirrot.
 
         Returns:
             True, jos siirtoja ei ole enää jäljellä.
             False, jos siirtoja on jäljellä.
         """
-        if not self.mahdolliset_siirrot(pelaaja):
-            if pelaaja == "musta":
-                pelaaja = "valkoinen"
-            else:
-                pelaaja = "musta"
-            if not self.mahdolliset_siirrot(pelaaja):
-                return True
+        if not self.mahdolliset_siirrot("musta") and not self.mahdolliset_siirrot("valkoinen"):
+            return True
         return False
 
     def hae_mustat_ja_valkoiset(self):

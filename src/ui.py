@@ -18,7 +18,7 @@ class UI:
 
             sallitut = self.othello.mahdolliset_siirrot(pelaaja)
             if not sallitut:
-                if self.othello.game_over(pelaaja):
+                if self.othello.game_over():
                     break
                 pelaaja = self.vaihda_vuoroa()
             else:
