@@ -1,4 +1,5 @@
 from othello import Othello
+from copy import deepcopy
 
 
 class OthelloAI:
@@ -7,17 +8,17 @@ class OthelloAI:
         return siirto
 
     def minimax(self, syvyys, othello, maksimoi_pelaaja):
-        if syvyys == 0 or not othello.sallitut():
+        if syvyys == 0 or not othello.mahdolliset_siirrot("musta") or not othello.mahdolliset_siirrot("valkoinen"):
             return self.arvioi_pelilauta(othello), None
 
         if maksimoi_pelaaja:
             paras_siirto = None
             max_arvo = float("-inf")
-            sallitut = othello.sallitut()
+            sallitut = othello.mahdolliset_siirrot("valkoinen")
             for siirto in sallitut:
-                othello.tee_siirto(siirto)
+                othello.tee_siirto(siirto, "valkoinen")
                 lauta = othello.hae_pelilauta()
-                kopiolauta = [[lauta[x][y] for y in range(len(lauta[0]))] for x in range(len(lauta))]
+                kopiolauta = deepcopy(lauta)
                 kopio_othello = Othello(kopiolauta)
                 arvo, _ = self.minimax(syvyys - 1, kopio_othello, False)
                 if arvo > max_arvo:
@@ -27,13 +28,12 @@ class OthelloAI:
         else:
             paras_siirto = None
             min_arvo = float("inf")
-            sallitut = othello.sallitut()
+            sallitut = othello.mahdolliset_siirrot("musta")
             for siirto in sallitut:
-                othello.tee_siirto(siirto)
+                othello.tee_siirto(siirto, "musta")
                 lauta = othello.hae_pelilauta()
-                kopiolauta = [[lauta[x][y] for y in range(len(lauta[0]))] for x in range(len(lauta))]
+                kopiolauta = deepcopy(lauta)
                 kopio_othello = Othello(kopiolauta)
-                kopio_othello.vaihda_vuoroa()
                 arvo, _ = self.minimax(syvyys - 1, kopio_othello, True)
                 if arvo < min_arvo:
                     min_arvo = arvo
@@ -46,8 +46,8 @@ class OthelloAI:
         kulmapaikat_musta = othello.hae_kulmapaikat("x")
         reunapaikat_valk = othello.hae_reunapaikat("o")
         reunapaikat_musta = othello.hae_reunapaikat("x")
-        sallitut_valk = othello.hae_sallittujen_maara("o")
-        sallitut_musta = othello.hae_sallittujen_maara("x")
+        sallitut_valk = len(othello.mahdolliset_siirrot("valkoinen"))
+        sallitut_musta = len(othello.mahdolliset_siirrot("musta"))
         arvio = (valkoiset - mustat) + \
                 (10 * kulmapaikat_valk - 10 * kulmapaikat_musta) + \
                 (5 * reunapaikat_valk - 5 * reunapaikat_musta) + \

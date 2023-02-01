@@ -139,12 +139,12 @@ class TestMaksukortti(unittest.TestCase):
         self.assertEqual(self.othello1.hae_pelaaja(), "valkoinen")
 
     def test_sallitut_palauttaa_oikean_listan_mustia(self):
-        sallitut = self.othello3.sallitut()
+        sallitut = self.othello3.mahdolliset_siirrot()
         self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
 
     def test_sallitut_palauttaa_oikean_listan_valkoisia(self):
         self.othello4.vaihda_vuoroa()
-        sallitut = self.othello4.sallitut()
+        sallitut = self.othello4.mahdolliset_siirrot()
         self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
 
     def test_tee_siirto_kaantaa_joka_suunnan_mustia(self):
@@ -175,7 +175,7 @@ class TestMaksukortti(unittest.TestCase):
         self.assertEqual(self.othello2.hae_pelilauta(), lopputulos)
 
     def test_sallitut_ei_anna_laittomia_siirtoja(self):
-        sallitut = self.othello5.sallitut()
+        sallitut = self.othello5.mahdolliset_siirrot()
         self.assertEqual(sallitut, [])
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
