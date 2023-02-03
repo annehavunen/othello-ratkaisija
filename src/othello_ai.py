@@ -20,7 +20,7 @@ class OthelloAI:
         paras_siirto = None
         paras_arvo = alfa
         for siirto in mahdolliset_siirrot:
-            kopio_othello = self.tee_siirto_ja_kopioi_lauta(othello, siirto, "valkoinen")
+            kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
             arvo = self.minimax(syvyys - 1, kopio_othello, alfa, beta, False)
             if arvo > paras_arvo:
                 paras_arvo = arvo
@@ -39,14 +39,14 @@ class OthelloAI:
         if syvyys == 0:
             return self.arvioi_pelilauta(othello)
         if maksimoi_pelaaja and not othello.mahdolliset_siirrot("valkoinen"):
-            return self.arvioi_pelilauta(othello)
+            self.minimax(syvyys - 1, othello, alfa, beta, False)
         if not maksimoi_pelaaja and not othello.mahdolliset_siirrot("musta"):
             self.minimax(syvyys - 1, othello, alfa, beta, True)
 
         if maksimoi_pelaaja:
             paras_arvo = alfa
             for siirto in othello.mahdolliset_siirrot("valkoinen"):
-                kopio_othello = self.tee_siirto_ja_kopioi_lauta(othello, siirto, "valkoinen")
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
                 paras_arvo = max(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, False))
                 alfa = max(alfa, paras_arvo)
                 if paras_arvo >= beta:
@@ -55,7 +55,7 @@ class OthelloAI:
         else:
             paras_arvo = beta
             for siirto in othello.mahdolliset_siirrot("musta"):
-                kopio_othello = self.tee_siirto_ja_kopioi_lauta(othello, siirto, "musta")
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "musta")
                 paras_arvo = min(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, True))
                 beta = min(beta, paras_arvo)
                 if paras_arvo <= alfa:
@@ -73,7 +73,7 @@ class OthelloAI:
                     arvio -= PAINOT[i][j]
         return arvio
 
-    def tee_siirto_ja_kopioi_lauta(self, othello, siirto, vari):
+    def tee_siirto_ja_kopioi_othello(self, othello, siirto, vari):
         othello.tee_siirto(siirto, vari)
         lauta = othello.hae_pelilauta()
         kopiolauta = deepcopy(lauta)

@@ -20,7 +20,7 @@ class Othello:
         """Käy läpi pelilaudan ja etsii tutki_suunta-funktion avulla mahdolliset siirrot.
 
         Args:
-            pelaaja: Pelaaja, jolta tutkitaan mahdolliset siirrot.
+            pelaaja: Pelaajan väri, jolta tutkitaan mahdolliset siirrot.
 
         Returns:
             mahdolliset_siirrot: Lista, jossa on sallitut siirrot.
