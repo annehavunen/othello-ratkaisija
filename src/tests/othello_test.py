@@ -75,7 +75,7 @@ class PelilautaStub:
                 [8, "_", "_", "_", "_", "_", "_", "_", "_"]]  
         return pelilauta      
 
-class TestMaksukortti(unittest.TestCase):
+class TestOthello(unittest.TestCase):
     def setUp(self):
         pelilauta1 = PelilautaStub().hae_pelilauta1()
         self.othello1 = Othello(pelilauta1)
