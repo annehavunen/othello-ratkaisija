@@ -6,8 +6,10 @@
 ## Dokumentaatio
 
 - [Määrittelydokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/maarittelydokumentti.md)
+- [Testausdokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/testausdokumentti.md)
 
 ## Viikkoraportit
 
 - [1. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti1.md)
 - [2. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti2.md)
+- [3. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti3.md)
