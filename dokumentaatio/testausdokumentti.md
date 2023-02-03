@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-[Yksikkötestauksen kattavuusraportti](file:///home/ahavunen/Opiskelu/Tiralabra/othello-ratkaisija/htmlcov/index.html)
+![Testikattavuusraportti](testikattavuusraportti.png)
 
 Sovelluksessa on tehty yksikkötestaus tiedostosta othello.py, jossa sijaitsee pelin toteuttava luokka Othello.
 Kirjoitushetkellä kaikki muu on testattu paitsi pelilaudan tulostava funktio.
