@@ -1,6 +1,6 @@
+from copy import deepcopy
 from othello import Othello
 from othello_ai import OthelloAI
-from copy import deepcopy
 
 
 class UI:
@@ -19,8 +19,11 @@ class UI:
             sallitut = self.othello.mahdolliset_siirrot(pelaaja)
             if not sallitut:
                 if self.othello.game_over():
+                    voittaja = self.othello.hae_voittaja()
+                    print("Peli päättyi.")
+                    print(f"Voittaja: {voittaja}")
                     break
-                pelaaja = self.vaihda_vuoroa()
+                pelaaja = self.vaihda_vuoroa(pelaaja)
             else:
                 sallitut.sort()
                 print("Mahdolliset siirrot: ", sallitut)
@@ -39,7 +42,7 @@ class UI:
             lauta = self.othello.hae_pelilauta()
             kopiolauta = deepcopy(lauta)
             kopio_othello = Othello(kopiolauta)
-            syote = self.othello_ai.hae_seuraava_siirto(3, kopio_othello, True)
+            syote = self.othello_ai.valitse_siirto(6, kopio_othello)
         else:
             syote = input(f"{pelaaja}, anna syöte: ")
 

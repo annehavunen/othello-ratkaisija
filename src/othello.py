@@ -1,5 +1,6 @@
 SUUNNAT = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
+
 class Othello:
     """Luokka, jonka avulla Othello-peliä pelataan.
 
@@ -143,7 +144,7 @@ class Othello:
     def hae_mustat_ja_valkoiset(self):
         """Laskee, montako mustaa ja valkoista nappulaa pelilaudalla on
         ja palauttaa tiedon niiden määrästä.
-        
+
         Returns: mustat, valkoiset: x- ja o-nappuloiden määrä pelilaudalla.
         """
         mustat = 0
@@ -156,31 +157,18 @@ class Othello:
                     valkoiset += 1
         return mustat, valkoiset
 
+    def hae_voittaja(self):
+        """Tarkistaa, kumpaa maata laudalla on enemmän vai onko tasapeli.
+
+        Returns:
+            Merkkijono, joka on "musta", "valkoinen" tai "tasapeli".
+        """
+        mustat, valkoiset = self.hae_mustat_ja_valkoiset()
+        if mustat - valkoiset > 0:
+            return "musta"
+        if mustat - valkoiset < 0:
+            return "valkoinen"
+        return "tasapeli"
+
     def hae_pelilauta(self):
         return self.pelilauta
-
-    def hae_kulmapaikat(self, maa):
-        kulmapaikat = 0
-        if self.pelilauta[1][1] == maa:
-            kulmapaikat += 1
-        if self.pelilauta[1][8] == maa:
-            kulmapaikat += 1
-        if self.pelilauta[8][1] == maa:
-            kulmapaikat += 1
-        if self.pelilauta[8][8] == maa:
-            kulmapaikat += 1
-        return kulmapaikat
-
-    def hae_reunapaikat(self, maa):
-        reunapaikat = 0
-        for sarake in range(2, 8):
-            if self.pelilauta[1][sarake] == maa:
-                reunapaikat += 1
-            if self.pelilauta[8][sarake] == maa:
-                reunapaikat += 1
-        for rivi in range(2, 8):
-            if self.pelilauta[rivi][1] == maa:
-                reunapaikat += 1
-            if self.pelilauta[rivi][8] == maa:
-                reunapaikat += 1
-        return reunapaikat
