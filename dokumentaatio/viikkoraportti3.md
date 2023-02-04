@@ -23,4 +23,4 @@ Onko tähän kommenttia tai neuvoa?
 Pian olisi syytä aloittaa suorituskykytestaus sekä OthelloAI-luokan testaus. En vielä tiedä, miten ne toteutetaan.
 Lisäksi on ehkä aiheellista toteuttaa jokin pelisiirtoja sisältävä syötesarja, jonka ohjelma voi ajaa automaattisesti ilman manuaalista näppäilyä.
 
-Käytetty työaika: 17h
+Käytetty työaika: 16h
