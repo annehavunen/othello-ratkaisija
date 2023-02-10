@@ -2,14 +2,14 @@ from copy import deepcopy
 from othello import Othello
 
 PAINOT = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 120, -20, 20, 5, 5, 20, -20, 120],
-            [0, -20, -40, -5, -5, -5, -5, -40, -20],
-            [0, 20, -5, 15, 3, 3, 15, -5, 20],
-            [0, 5, -5, 3, 3, 3, 3, -5, 5],
-            [0, 5, -5, 3, 3, 3, 3, -5, 5],
-            [0, 20, -5, 15, 3, 3, 15, -5, 20],
-            [0, -20, -40, -5, -5, -5, -5, -40, -20],
-            [0, 120, -20, 20, 5, 5, 20, -20, 120]]
+        [0, 120, -20, 20, 5, 5, 20, -20, 120],
+        [0, -20, -40, -5, -5, -5, -5, -40, -20],
+        [0, 20, -5, 15, 3, 3, 15, -5, 20],
+        [0, 5, -5, 3, 3, 3, 3, -5, 5],
+        [0, 5, -5, 3, 3, 3, 3, -5, 5],
+        [0, 20, -5, 15, 3, 3, 15, -5, 20],
+        [0, -20, -40, -5, -5, -5, -5, -40, -20],
+        [0, 120, -20, 20, 5, 5, 20, -20, 120]]
 
 
 class OthelloAI:
@@ -36,10 +36,29 @@ class OthelloAI:
             if voittaja == "musta":
                 return -10000 - syvyys
             return 0
-        if syvyys == 0:
+        elif syvyys == 0:
             return self.arvioi_pelilauta(othello)
 
-        if maksimoi_pelaaja:
+        elif maksimoi_pelaaja and not othello.mahdolliset_siirrot("valkoinen"):
+            paras_arvo = beta
+            for siirto in othello.mahdolliset_siirrot("musta"):
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "musta")
+                paras_arvo = min(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, True))
+                beta = min(beta, paras_arvo)
+                if paras_arvo <= alfa:
+                    break
+            return paras_arvo
+        elif not maksimoi_pelaaja and not othello.mahdolliset_siirrot("musta"):
+            paras_arvo = alfa
+            for siirto in othello.mahdolliset_siirrot("valkoinen"):
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
+                paras_arvo = max(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, False))
+                alfa = max(alfa, paras_arvo)
+                if paras_arvo >= beta:
+                    break
+            return paras_arvo
+
+        elif maksimoi_pelaaja:
             paras_arvo = alfa
             for siirto in othello.mahdolliset_siirrot("valkoinen"):
                 kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
@@ -86,8 +105,11 @@ class OthelloAI:
         return jarjestetyt_siirrot
 
     def tee_siirto_ja_kopioi_othello(self, othello, siirto, vari):
-        othello.tee_siirto(siirto, vari)
         lauta = othello.hae_pelilauta()
+        kopiolauta = deepcopy(lauta)
+        kopio_othello = Othello(kopiolauta)        
+        kopio_othello.tee_siirto(siirto, vari)
+        lauta = kopio_othello.hae_pelilauta()
         kopiolauta = deepcopy(lauta)
         kopio_othello = Othello(kopiolauta)
         return kopio_othello
