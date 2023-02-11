@@ -1,5 +1,7 @@
 # Testausdokumentti
 
+![Kattavuusraportti](kattavuusraportti.png)
+
 Sovelluksessa on tehty yksikkötestaus tiedostoista othello.py sekä othello_ai.py.
 Niissä sijaitsevat pelin toteuttava luokka Othello ja tekoälyn toteuttava luokka OthelloAI.
 Molempien käytössä on luokka PelilautaStub, josta haetaan testien käyttöön erilaisia pelilautoja eli pelitilanteita.
