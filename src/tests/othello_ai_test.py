@@ -26,6 +26,9 @@ class TestOthello(unittest.TestCase):
         pelilauta11 = PelilautaStub().hae_pelilauta11()
         self.othello11 = Othello(pelilauta11)
 
+        pelilauta12 = PelilautaStub().hae_pelilauta12()
+        self.othello12 = Othello(pelilauta12)
+
     def test_valitaan_nopein_voitto(self):
         siirto1 = self.othello_ai.valitse_siirto(6, self.othello7)
         siirto2 = self.othello_ai.valitse_siirto(6, self.othello8)
@@ -36,8 +39,9 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(siirto, "d8")
 
     def test_valitaan_tasapeli_ennen_tappiota(self):
-        siirto = self.othello_ai.valitse_siirto(6, self.othello10)
-        self.assertEqual(siirto, "e1")
+        siirto1 = self.othello_ai.valitse_siirto(6, self.othello10)
+        siirto2 = self.othello_ai.valitse_siirto(6, self.othello12)
+        self.assertEqual((siirto1, siirto2), ("e1", "e1"))
 
     def test_valitaan_voitto_eika_tasapeli(self):
         siirto = self.othello_ai.valitse_siirto(6, self.othello11)

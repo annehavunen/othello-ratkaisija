@@ -1,4 +1,5 @@
 class PelilautaStub:
+    """Luokka, jossa on erilaisia pelilautoja testaamista varten."""
     def hae_pelilauta1(self):
         pelilauta = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
                 [1, "x", "_", "x", "_", "x", "_", "_", "_"],
@@ -72,7 +73,7 @@ class PelilautaStub:
         return pelilauta
 
     def hae_pelilauta7(self):
-        """Siirtosarjat voittoon: h1, h2, h8 VS h8, e4, f1, h1"""
+        """Siirtosarjat valkoisen voittoon: h1, h2, h8 VS h8, e4, f1, h1"""
         pelilauta = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
                 [1, "_", "_", "_", "_", "_", "_", "_", "_"],
                 [2, "_", "_", "_", "_", "_", "_", "x", "_"],
@@ -137,5 +138,19 @@ class PelilautaStub:
                 [5, "_", "_", "_", "_", "_", "_", "_", "x"],
                 [6, "_", "o", "_", "_", "_", "_", "_", "x"],
                 [7, "_", "_", "x", "_", "_", "_", "_", "x"],
+                [8, "_", "_", "_", "_", "_", "_", "_", "_"]]
+        return pelilauta
+
+    def hae_pelilauta12(self):
+        """Siirtosarja tasapeliin: e1, d1
+        Siirtosarja tappioon: g6, a1, d6"""
+        pelilauta = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
+                [1, "_", "o", "x", "x", "_", "_", "_", "_"],
+                [2, "_", "_", "_", "_", "_", "_", "_", "_"],
+                [3, "_", "_", "_", "_", "_", "_", "_", "_"],
+                [4, "_", "_", "_", "_", "_", "_", "_", "_"],
+                [5, "_", "_", "_", "_", "_", "_", "_", "_"],
+                [6, "_", "_", "_", "_", "o", "x", "_", "x"],
+                [7, "_", "_", "_", "_", "_", "_", "_", "_"],
                 [8, "_", "_", "_", "_", "_", "_", "_", "_"]]
         return pelilauta
