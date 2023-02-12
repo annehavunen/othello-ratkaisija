@@ -26,7 +26,10 @@ class UI:
                 pelaaja = self.vaihda_vuoroa(pelaaja)
             else:
                 sallitut.sort()
-                print("Mahdolliset siirrot: ", sallitut)
+                print("Mahdolliset siirrot: ", end="")
+                for i in range(len(sallitut)-1):
+                    print(f"{sallitut[i]}, ", end="")
+                print(sallitut[-1])
                 syote = self.hae_siirto(pelaaja)
                 if syote == "q":
                     break

@@ -1,6 +1,6 @@
 # Viikkoraportti4
 
-Ensimmäisiä muutoksia tällä viikolla oli siirtojen järjestäminen alfa-beeta-karsinnan tehostamiseksi.
+Ensimmäisiä muutoksia koodiin tällä viikolla oli pelilaudan siirtojen järjestäminen alfa-beeta-karsinnan tehostamiseksi.
 Siirrot järjestetään valitse_siirto-funktiossa siten, että vähiten vastustajan nappuloita kääntävät siirrot ovat ensiksi.
 Lukemani mukaan tämä on usein paras taktiikka, vaikka loppuvaiheessa yritetäänkin vallata vastustajan nappulat.
 
@@ -21,11 +21,10 @@ Pelin tulee pyrkiä voittamaan nopeasti ja häviämään hitaasti.
 Tämä selkeytti testaamista, vaikka olenkin sen suhteen yhä epävarma.
 
 Ensi viikolla voisin ainakin toteuttaa iteratiivisen syvenemisen sekä täydentää dokumentaatiota.
-En kuitenkaan tiedä, mitä iteratiivisella syvenemisellä haetaan, joten voisinko saada siihen neuvoa?
+En kuitenkaan tiedä, mitä iteratiivisella syvenemisellä tarkoitetaan, joten voisinko saada siihen neuvoa?
 Saan sen käsityksen, että osittain asia liittyy siihen, että minimax laskee siirtoja niin syvälle kuin se ehtii asetetussa aikarajassa.
 Materiaalissa tähän kuitenkin liitetään myös siirtojen järjestäminen 
 ja lisäksi mainitaan, että riippuu tapauksesta, "miltä syvyydeltä kannattaa aloittaa".
 En siis ymmärrä, mitä kokonaisuudessaan haetaan.
 
-Käytetty työaika 15h
-
+Käytetty työaika: 15 h

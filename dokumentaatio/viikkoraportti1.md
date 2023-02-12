@@ -14,4 +14,4 @@ Rekursiot tuottavat päänvaivaa ja debuggaus tuntuu hankalalta.
 Luulen, että minun pitää kirjoittaa tähän mennessä miettimäni koodi mahdollisimman nopeasti valmiiksi 
 ja kysyä sitten neuvoa.
 
-Käytetty työaika: 2h
+Käytetty työaika: 2 h

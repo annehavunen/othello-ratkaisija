@@ -7,7 +7,7 @@ ja yleensäkin peliä pyörittävä silmukka.
 Luokassa Othello on pelin tarvitsemat toiminnot, 
 kuten mahdollisten siirtojen hakeminen, siirron toteutus ja pelitilanteen laskeminen.
 OthelloAI on minimax-tekoälyn toteuttava luokka.
-Sovelluksessa tekoäly pelaa valkoista (joka on tekstikäyttöliittymässä "o").
+Sovelluksessa tekoäly pelaa valkoista, joka on tekstikäyttöliittymässä "o".
 
 Sovelluksessa yksikkötestataan luokkia Othello ja OthelloAI.
 Testit hyödyntävät luokkaa PelilautaStub, jossa on erilaisia pelilautoja tilanteiden tutkimiseksi.
@@ -15,7 +15,7 @@ Testit hyödyntävät luokkaa PelilautaStub, jossa on erilaisia pelilautoja tila
 Algoritmin aikavaativuus on eksponentiaalinen suhteessa laskennan syvyyteen.
 Erityisiä tietorakenteita ei esim. listojen lisäksi tarvita.
 
-Työtä voisi parantaa ainakin lisäämällä iteratiivisen syvenemisen sen sijaan,
+Työtä voisi parantaa ainakin lisäämällä iteratiivinen syveneminen sen sijaan,
 että lasketaan aina jollekin kiinteälle syvyydelle.
 
 
