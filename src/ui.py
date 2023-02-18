@@ -39,13 +39,14 @@ class UI:
                 else:
                     print("Siirto: ", syote)
                     pelaaja = self.vaihda_vuoroa(pelaaja)
+            print()
 
     def hae_siirto(self, pelaaja):
         if pelaaja == "valkoinen":
             lauta = self.othello.hae_pelilauta()
             kopiolauta = deepcopy(lauta)
             kopio_othello = Othello(kopiolauta)
-            syote = self.othello_ai.valitse_siirto(6, kopio_othello)
+            syote = self.othello_ai.valitse_siirto(20, kopio_othello)
         else:
             syote = input(f"{pelaaja}, anna syöte: ")
 
