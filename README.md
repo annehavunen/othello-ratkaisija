@@ -16,3 +16,4 @@
 - [2. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti2.md)
 - [3. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti3.md)
 - [4. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti4.md)
+- [5. viikkoraportti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/viikkoraportti5.md)
