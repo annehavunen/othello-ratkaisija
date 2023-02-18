@@ -1,7 +1,7 @@
 # Toteutusdokumentti
 
 Othello-ohjelman toteutus jakautuu kolmeen luokkaan: UI, Othello ja OthelloAI.
-Näiden lisäksi on tiedosto index,py, josta peli käynnistetään.
+Näiden lisäksi on tiedosto index.py, josta peli käynnistetään.
 Käyttöliittymä sijaitsee luokassa UI, ja siellä tapahtuu kommunikointi käyttäjän kanssa
 ja yleensäkin peliä pyörittävä silmukka.
 Luokassa Othello on pelin tarvitsemat toiminnot, 
@@ -15,9 +15,9 @@ Testit hyödyntävät luokkaa PelilautaStub, jossa on erilaisia pelilautoja tila
 Algoritmin aikavaativuus on eksponentiaalinen suhteessa laskennan syvyyteen.
 Erityisiä tietorakenteita ei esim. listojen lisäksi tarvita.
 
-Työtä voisi parantaa ainakin lisäämällä iteratiivinen syveneminen sen sijaan,
-että lasketaan aina jollekin kiinteälle syvyydelle.
-
+Työtä voisi parantaa ainakin lisäämällä välimuistin,
+jossa on kutakin pelitilannetta kohti tieto, mikä on ollut paras siirto.
+Tämä tehostaisi minimaxia.
 
 ## Lähteet
 

@@ -1,12 +1,19 @@
 # Määrittelydokumentti
 
-Othello-ratkaisija toteutetaan Python-ohjelmointikielellä suomeksi. Harjoitustyö on osa tietojenkäsittelytieteen kandidaatin tutkintoa.
+Othello-ratkaisija on toteutettu Python-ohjelmointikielellä suomeksi. Harjoitustyö on osa tietojenkäsittelytieteen kandidaatin tutkintoa.
 
-Ratkaisija on minimax-algoritmilla toteutettu tekoäly, jota vastaan käyttäjä voi pelata. 
-Algoritmia tehostetaan alfa-beeta-karsinnalla. 
+Ratkaisija on minimax-algoritmilla toteutettu tekoäly, jota vastaan käyttäjä voi pelata.
 Othello on kaksin pelattava, täydellisen tiedon nollasummapeli, ja minimax on yleinen ratkaisualgoritmi tämän tyylisissä peleissä.
+Algoritmia tehostaa alfa-beeta-karsinta.
+Siirtojen järjestäminen tehostaa minimaxia edelleen, ja iteratiivinen syveneminen tuo joustavuutta laskentasyvyyteen. 
 
-Peli visualisoidaan ASCII-grafiikalla ja sitä pelataan tekstikäyttöliittymällä. Ohjelma saa syötteenä käyttäjän tekemän siirron ja ratkaisija laskee sen perusteella seuraavan siirron.
+Minimax-algoritmin aikavaativuus on eksponentiaalinen suhteessa laskennan syvyyteen,
+minkä vuoksi laskennan tehostaminen on suotavaa.
+
+Peli visualisoidaan ASCII-grafiikalla ja sitä pelataan tekstikäyttöliittymällä. 
+Ohjelma saa syötteenä käyttäjän tekemän siirron ja ratkaisija laskee sen perusteella seuraavan siirron.
+Tausta-ajatuksena on niin sanottu pelipuu, jossa jokainen mahdollinen siirto synnyttää joukon mahdollisia vastustajan siirtoja.
+Tekoäly käy mahdollisuuksia läpi ja valitsee siirron, joka johtaa pelipuussa sille suotuisimpaan pelitilanteeseen.
 
 # Lähteet
 

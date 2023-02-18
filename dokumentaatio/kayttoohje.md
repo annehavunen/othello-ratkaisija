@@ -34,6 +34,7 @@ Tiedoston [.pylintrc](https://github.com/annehavunen/othello-ratkaisija/blob/mas
 
 Käyttäjä pelaa mustaa väriä, jota edustaa symboli "x", 
 ja tekoäly valkoista, jota edustaa "o".
+Tekoälyn siirtoa voi joutua odottamaan muutaman sekunnin.
 Syöte annetaan tekstikäyttöliittymässä muodossa "a1".
 Kirjain merkitsee saraketta ja numero riviä.
 Peli päättyy, kun kummallakaan pelaajalla ei ole mahdollisia siirtoja,

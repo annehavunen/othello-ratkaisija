@@ -16,7 +16,7 @@ yhden tai useamman nappulan kääntämistä ja pelilaudan kulmapaikkojen läpik�
 OthelloAI:n testeissä on rakennettu pelitilanteita, joista odotetaan tiettyä tulosta minimax-algoritmilta.
 Testeissä tutkitaan esimerkiksi, tunnistaako algoritmi nopeamman voiton hitaammasta
 ja valitseeko se tasapelin tappion sijaan. Tutkitaan siis, onko algoritmin palauttama siirto todella paras.
-Sellaisia pelitilanteita ei arvioida, joihin ei liity voitto tai tappio,
+Sellaisia pelitilanteita ei testata, joihin ei liity voitto tai tappio,
 sillä niiden hyvyyttä ei edes voida varmuudella arvioida.
 Pelilaudan tilanteet ovat yksinkertaisia paitsi siksi, että niiden muodostaminen on haastavaa,
 niin myös siksi, että niiden on hyvä olla suhteellisen helposti ihmisen todennettavissa.

@@ -6,8 +6,8 @@
 ## Dokumentaatio
 
 - [Määrittelydokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/maarittelydokumentti.md)
-- [Testausdokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/testausdokumentti.md)
 - [Toteutusdokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/toteutusdokumentti.md)
+- [Testausdokumentti](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/testausdokumentti.md)
 - [Käyttöohje](https://github.com/annehavunen/othello-ratkaisija/blob/master/dokumentaatio/kayttoohje.md)
 
 ## Viikkoraportit

@@ -1,4 +1,4 @@
-# Viikkoraportti4
+# Viikkoraportti 4
 
 Ensimmäisiä muutoksia koodiin tällä viikolla oli pelilaudan siirtojen järjestäminen alfa-beeta-karsinnan tehostamiseksi.
 Siirrot järjestetään valitse_siirto-funktiossa siten, että vähiten vastustajan nappuloita kääntävät siirrot ovat ensiksi.
