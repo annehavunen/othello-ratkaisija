@@ -28,15 +28,15 @@ class TestOthello(unittest.TestCase):
         self.assertEqual((mustat, valkoiset), (8, 11))
 
     def test_sallitut_palauttaa_oikean_listan_mustia(self):
-        sallitut = self.othello3.mahdolliset_siirrot("musta")
+        sallitut = self.othello3.mahdolliset_siirrot(False)
         self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
 
     def test_sallitut_palauttaa_oikean_listan_valkoisia(self):
-        sallitut = self.othello4.mahdolliset_siirrot("valkoinen")
+        sallitut = self.othello4.mahdolliset_siirrot(True)
         self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
 
     def test_tee_siirto_kaantaa_joka_suunnan_mustia(self):
-        self.othello1.tee_siirto("c3", "musta")
+        self.othello1.tee_siirto("c3", False)
         lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
                 [1, "x", "_", "x", "_", "x", "_", "_", "_"],
                 [2, "_", "x", "x", "x", "_", "_", "_", "_"],
@@ -49,7 +49,7 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_tee_siirto_kaantaa_joka_suunnan_valkoisia(self):
-        self.othello2.tee_siirto("c3", "valkoinen")
+        self.othello2.tee_siirto("c3", True)
         lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
                 [1, "o", "_", "o", "_", "o", "_", "_", "_"],
                 [2, "_", "o", "o", "o", "_", "_", "_", "_"],
@@ -75,11 +75,11 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_sallitut_ei_anna_laittomia_siirtoja(self):
-        sallitut = self.othello5.mahdolliset_siirrot("musta")
+        sallitut = self.othello5.mahdolliset_siirrot(False)
         self.assertEqual(sallitut, [])
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
-        self.othello1.tee_siirto("f1", "musta")
+        self.othello1.tee_siirto("f1", False)
         lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
                 [1, "x", "_", "x", "_", "x", "_", "_", "_"],
                 [2, "_", "o", "o", "o", "_", "_", "_", "_"],

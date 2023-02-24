@@ -3,6 +3,7 @@ SUUNNAT = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
 class Othello:
     """Luokka, jonka avulla Othello-peliä pelataan.
+    Vastaavuudet pelinappuloissa: musta = x = 1 = False, valkoinen = o = 2 = True
 
     Attributes:
         pelilauta: Pelilauta-matriisi, jolla Othello-peli aloitetaan.
@@ -16,7 +17,7 @@ class Othello:
         """
         self.pelilauta = pelilauta
 
-    def mahdolliset_siirrot(self, pelaaja):
+    def mahdolliset_siirrot(self, tekoalyn_vuoro):
         """Käy läpi pelilaudan ja etsii tutki_suunta-funktion avulla mahdolliset siirrot.
 
         Args:
@@ -28,12 +29,12 @@ class Othello:
         mahdolliset_siirrot = []
         for i in range(9):
             for j in range(9):
-                if pelaaja == "musta":
-                    oma_maa = "x"
-                    vastustajan_maa = "o"
-                else:
+                if tekoalyn_vuoro:
                     oma_maa = "o"
                     vastustajan_maa = "x"
+                else:
+                    oma_maa = "x"
+                    vastustajan_maa = "o"
                 if self.pelilauta[i][j] == oma_maa:
                     for suunta in SUUNNAT:
                         sallittu_suunta = self.tutki_suunta((i, j), suunta, vastustajan_maa, "_")
@@ -70,7 +71,7 @@ class Othello:
                 else:
                     return None
 
-    def tee_siirto(self, syote, pelaaja):
+    def tee_siirto(self, syote, tekoalyn_vuoro):
         """Huolehtii siirron toteutuksesta.
         Käyttää apunaan funktioita mahdolliset_siirrot, kaanna_suunta ja laske_tilanne.
 
@@ -82,17 +83,17 @@ class Othello:
             True, jos siirto on sallittu.
             False, jos siirto ei ole sallittu.
         """
-        sallitut = self.mahdolliset_siirrot(pelaaja)
+        sallitut = self.mahdolliset_siirrot(tekoalyn_vuoro)
         if syote in sallitut:
             sarakkeet = "0abcdefgh"
             sarake = int(sarakkeet.index(syote[0]))
             rivi = int(syote[1])
-            if pelaaja == "musta":
-                oma_maa = "x"
-                vastustajan_maa = "o"
-            else:
+            if tekoalyn_vuoro:
                 oma_maa = "o"
                 vastustajan_maa = "x"
+            else:
+                oma_maa = "x"
+                vastustajan_maa = "o"
             self.pelilauta[rivi][sarake] = oma_maa
             for suunta in SUUNNAT:
                 self.kaanna_suunta((rivi, sarake), suunta, vastustajan_maa, oma_maa)
@@ -122,7 +123,6 @@ class Othello:
                 rivi += liike[0]
                 sarake += liike[1]
 
-
     def tulosta_pelilauta(self):
         """Tulostaa pelilaudan ASCII-grafiikalla."""
         for rivi in self.pelilauta:
@@ -137,7 +137,7 @@ class Othello:
             True, jos siirtoja ei ole enää jäljellä.
             False, jos siirtoja on jäljellä.
         """
-        if not self.mahdolliset_siirrot("musta") and not self.mahdolliset_siirrot("valkoinen"):
+        if not self.mahdolliset_siirrot(True) and not self.mahdolliset_siirrot(False):
             return True
         return False
 

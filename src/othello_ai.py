@@ -12,15 +12,15 @@ PAINOT = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, -20, -40, -5, -5, -5, -5, -40, -20],
         [0, 120, -20, 20, 5, 5, 20, -20, 120]]
 
-
+# Kommentit ovat väliaikaisesti koodissa.
 class OthelloAI:
     def __init__(self):
         """Tekoäly, joka laskee tietokoneen siirron.
         Toteutettu minimax-algoritmilla ja tehostettu alfa-beeta-karsinnalla.
         """
+        # self.laskuri = 0
     def valitse_siirto(self, syvyys, othello):
         """Aloittaa maksimoijan ensimmäisellä kierroksella ja kutsuu minimaxia.
-        Laskee niin syvälle kuin aikarajan puitteissa ehtii.
 
         Args:
             syvyys: Kokonaisluku, jossa on suurin mahdollinen laskentasyvyys.
@@ -29,17 +29,22 @@ class OthelloAI:
         Returns:
             paras_siirto: Tekoälyn valitsema siirto, joka on muodossa "a1".
         """
+        parhaat_siirrot = {}
         alfa = -100000
         beta = 100000
-        jarjestetyt_siirrot = self.hae_jarjestetyt_siirrot(othello, "valkoinen")
+        jarjestetyt_siirrot = self.hae_jarjestetyt_siirrot(othello, True)
         paras_siirto = None
-        for i in range(2, syvyys + 1):
+        # self.laskuri = 0
+        # print("jarjestetyt ennen nostoja: ", jarjestetyt_siirrot)
+        # alkuaika = time.time()
+        for i in range(3, syvyys + 1):
+            # print("syvyys ", i)
             alfa = -100000
             paras_arvo = -100000
             start = time.time()
             for siirto in jarjestetyt_siirrot:
-                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
-                arvo = self.minimax(i, kopio_othello, alfa, beta, False)
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, True)
+                arvo = self.minimax(i, kopio_othello, alfa, beta, False, parhaat_siirrot)
                 if arvo > paras_arvo:
                     paras_arvo = arvo
                     paras_siirto = siirto
@@ -48,9 +53,13 @@ class OthelloAI:
                 break
             jarjestetyt_siirrot.remove(paras_siirto)
             jarjestetyt_siirrot.insert(0, paras_siirto)
+        #     print("paras siirto: ", paras_siirto)
+        #     print("järjestetyt noston jälkeen: ", jarjestetyt_siirrot)
+        # print("laskenta-aika: ", time.time() - alkuaika)
+        # print("laskuri: ", self.laskuri)
         return paras_siirto
 
-    def minimax(self, syvyys, othello, alfa, beta, maksimoi_pelaaja):
+    def minimax(self, syvyys, othello, alfa, beta, maksimoi_pelaaja, parhaat_siirrot):
         """Rekursiivinen funktio, jossa käydään läpi siirtoja ja arvioidaan niiden hyvyyttä.
         Minimoija ja maksimoija vuorottelevat.
 
@@ -72,40 +81,53 @@ class OthelloAI:
                 return -10000 - syvyys
             return 0
         if syvyys == 0:
+            # self.laskuri += 1
             arvio = self.arvioi_pelilauta(othello)
             return arvio
 
         if maksimoi_pelaaja:
-            mahdolliset_siirrot = othello.mahdolliset_siirrot("valkoinen")
+            mahdolliset_siirrot = othello.mahdolliset_siirrot(True)
         else:
-            mahdolliset_siirrot = othello.mahdolliset_siirrot("musta")
+            mahdolliset_siirrot = othello.mahdolliset_siirrot(False)
 
-        if mahdolliset_siirrot:
-            if maksimoi_pelaaja:
-                mahdolliset_siirrot = self.hae_jarjestetyt_siirrot(othello, "valkoinen")
-            else:
-                mahdolliset_siirrot = self.hae_jarjestetyt_siirrot(othello, "musta")
-
+        paras_siirto = None
+        avain = 0
         if not mahdolliset_siirrot:
             mahdolliset_siirrot = ["x"]
+        else:
+            avain = laske_avain(othello.hae_pelilauta(), maksimoi_pelaaja)
+            paras_siirto = parhaat_siirrot.get(avain)
+            if paras_siirto:
+                mahdolliset_siirrot.remove(paras_siirto)
+                mahdolliset_siirrot.insert(0, paras_siirto)
 
         if maksimoi_pelaaja:
             paras_arvo = -100000
             for siirto in mahdolliset_siirrot:
-                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "valkoinen")
-                paras_arvo = max(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, False))
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, True)
+                arvo = self.minimax(syvyys - 1, kopio_othello, alfa, beta, False, parhaat_siirrot)
+                if arvo > paras_arvo:
+                    paras_arvo = arvo
+                    paras_siirto = siirto
                 alfa = max(alfa, paras_arvo)
                 if paras_arvo >= beta:
                     break
+            if mahdolliset_siirrot[0] != "x":
+                parhaat_siirrot[avain] = paras_siirto
             return paras_arvo
         else:
             paras_arvo = 100000
             for siirto in mahdolliset_siirrot:
-                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, "musta")
-                paras_arvo = min(paras_arvo, self.minimax(syvyys - 1, kopio_othello, alfa, beta, True))
+                kopio_othello = self.tee_siirto_ja_kopioi_othello(othello, siirto, False)
+                arvo = self.minimax(syvyys - 1, kopio_othello, alfa, beta, True, parhaat_siirrot)
+                if arvo < paras_arvo:
+                    paras_arvo = arvo
+                    paras_siirto = siirto
                 beta = min(beta, paras_arvo)
                 if paras_arvo <= alfa:
                     break
+            if mahdolliset_siirrot[0] != "x":
+                parhaat_siirrot[avain] = paras_siirto
             return paras_arvo
 
     def arvioi_pelilauta(self, othello):
@@ -127,28 +149,28 @@ class OthelloAI:
                     arvio -= PAINOT[i][j]
         return arvio
 
-    def hae_jarjestetyt_siirrot(self, othello, pelaaja):
+    def hae_jarjestetyt_siirrot(self, othello, maksimoi_pelaaja):
         """Palauttaa pelaajan mahdolliset siirrot järjestyksessä, jossa ensin on siirrot,
         jotka kääntävät vähiten vastustajan nappuloita.
 
         Args:
             othello: Othello-olio, joka sisältää nykyisen pelitilanteen.
-            pelaaja: Vuorossa olevan pelaajan väri.
+            maksimoi_pelaaja: Boolean, joka on maksimoijalla eli tekoälyllä True.
 
         Returns:
             jarjestetyt_siirrot: Lista, jossa on pelaajan mahdolliset siirrot järjestettyinä.
         """
-        mahdolliset_siirrot = othello.mahdolliset_siirrot(pelaaja)
+        mahdolliset_siirrot = othello.mahdolliset_siirrot(maksimoi_pelaaja)
         maarat_siirrot = []
         for siirto in mahdolliset_siirrot:
             lauta = othello.hae_pelilauta()
             kopiolauta = deepcopy(lauta)
             kopio_othello = Othello(kopiolauta)
-            kopio_othello.tee_siirto(siirto, pelaaja)
-            if pelaaja == "valkoinen":
-                vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot("musta")
+            kopio_othello.tee_siirto(siirto, maksimoi_pelaaja)
+            if maksimoi_pelaaja:
+                vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot(False)
             else:
-                vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot("valkoinen")
+                vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot(True)
             maarat_siirrot.append((len(vastustajan_mahdolliset), siirto))
         maarat_siirrot.sort()
         jarjestetyt_siirrot = []
@@ -156,13 +178,13 @@ class OthelloAI:
             jarjestetyt_siirrot.append(maara_siirto[1])
         return jarjestetyt_siirrot
 
-    def tee_siirto_ja_kopioi_othello(self, othello, siirto, vari):
+    def tee_siirto_ja_kopioi_othello(self, othello, siirto, tekoalyn_vuoro):
         """Kopioi othello-olion, tekee halutun siirron ja palauttaa uuden kopion.
 
         Args:
             othello: Othello-olio, jossa on tämänhetkinen pelitilanne.
             siirto: Tieto siitä, mihin kohtaan siirto tehdään pelilaudalla.
-            vari: Siirron tekevän maan väri.
+            tekoalyn_vuoro: Boolean, joka ilmaisee, kumman pelaajan vuoro on.
 
         Returns:
             kopio_othello: Othello-olio, jossa on uusi pelitilanne.
@@ -171,8 +193,28 @@ class OthelloAI:
         kopiolauta = deepcopy(lauta)
         kopio_othello = Othello(kopiolauta)
         if siirto != "x":
-            kopio_othello.tee_siirto(siirto, vari)
-        lauta = kopio_othello.hae_pelilauta()
-        kopiolauta = deepcopy(lauta)
-        kopio_othello = Othello(kopiolauta)
+            kopio_othello.tee_siirto(siirto, tekoalyn_vuoro)
         return kopio_othello
+
+def laske_avain(pelilauta, maksimoi_pelaaja):
+    """Laskee kokonaisluvun, joka ilmaisee pelitilanteen yksiselitteisesti.
+
+    Args:
+        pelilauta: Matriisi, joka kuvaa pelitilannetta.
+        maksimoi_pelaaja: Boolean, joka on True, jos on maksimoijan vuoro.
+
+    Returns:
+        avain: Kokonaisluku, joka ilmaisee pelitilanteen.
+    """
+    avain = 0
+    for i in range(1, 9):
+        for j in range(1, 9):
+            if pelilauta[i][j] == "o":
+                avain += 2
+            elif pelilauta[i][j] == "x":
+                avain += 1
+            avain *= 3
+    avain *= 2
+    if maksimoi_pelaaja:
+        avain += 1
+    return avain
