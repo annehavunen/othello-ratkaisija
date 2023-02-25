@@ -30,22 +30,22 @@ class TestOthello(unittest.TestCase):
         self.othello12 = Othello(pelilauta12)
 
     def test_valitaan_nopein_voitto(self):
-        siirto1 = self.othello_ai.valitse_siirto(6, self.othello7)
-        siirto2 = self.othello_ai.valitse_siirto(6, self.othello8)
-        self.assertEqual((siirto1, siirto2), ("h1", "f2"))
+        siirto1 = self.othello_ai.valitse_siirto(10, self.othello7)
+        siirto2 = self.othello_ai.valitse_siirto(10, self.othello8)
+        self.assertEqual([siirto1, siirto2], [(0, 7), (1, 5)])
 
     def test_valitaan_hitain_tappio(self):
-        siirto = self.othello_ai.valitse_siirto(6, self.othello9)
-        self.assertEqual(siirto, "d8")
+        siirto = self.othello_ai.valitse_siirto(10, self.othello9)
+        self.assertEqual(siirto, (7, 3))
 
     def test_valitaan_tasapeli_ennen_tappiota(self):
         siirto1 = self.othello_ai.valitse_siirto(6, self.othello10)
         siirto2 = self.othello_ai.valitse_siirto(6, self.othello12)
-        self.assertEqual((siirto1, siirto2), ("e1", "e1"))
+        self.assertEqual([siirto1, siirto2], [(0, 4), (0, 4)])
 
     def test_valitaan_voitto_eika_tasapeli(self):
-        siirto = self.othello_ai.valitse_siirto(6, self.othello11)
-        self.assertEqual(siirto, "d8")
+        siirto = self.othello_ai.valitse_siirto(10, self.othello11)
+        self.assertEqual(siirto, (7, 3))
 
     def test_heuristinen_arvio_laskee_oikein(self):
         arvio = self.othello_ai.arvioi_pelilauta(self.othello1)

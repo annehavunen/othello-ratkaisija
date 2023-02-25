@@ -29,49 +29,50 @@ class TestOthello(unittest.TestCase):
 
     def test_sallitut_palauttaa_oikean_listan_mustia(self):
         sallitut = self.othello3.mahdolliset_siirrot(False)
-        self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
+        self.assertEqual(sallitut, [(0, 0), (0, 7), (1, 0), (1, 1), (1, 7), (2, 3), (7, 1), (7, 7)])
 
     def test_sallitut_palauttaa_oikean_listan_valkoisia(self):
         sallitut = self.othello4.mahdolliset_siirrot(True)
-        self.assertEqual(sallitut, ["a1", "a2", "b2", "b8", "d3", "h1", "h2", "h8"])
+        self.assertEqual(sallitut, [(0, 0), (0, 7), (1, 0), (1, 1), (1, 7), (2, 3), (7, 1), (7, 7)])
 
     def test_tee_siirto_kaantaa_joka_suunnan_mustia(self):
-        self.othello1.tee_siirto("c3", False)
-        lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
-                [1, "x", "_", "x", "_", "x", "_", "_", "_"],
-                [2, "_", "x", "x", "x", "_", "_", "_", "_"],
-                [3, "x", "x", "x", "x", "x", "_", "_", "_"],
-                [4, "_", "x", "x", "x", "_", "_", "_", "_"],
-                [5, "x", "_", "x", "_", "x", "_", "_", "_"],
-                [6, "_", "_", "x", "_", "_", "_", "_", "_"],
-                [7, "_", "_", "x", "_", "_", "_", "_", "_"],
-                [8, "_", "_", "x", "_", "_", "_", "_", "_"]]
+        self.othello1.tee_siirto((2, 2), False)
+        lopputulos = [
+                [1, 0, 1, 0, 1, 0, 0, 0],
+                [0, 1, 1, 1, 0, 0, 0, 0],
+                [1, 1, 1, 1, 1, 0, 0, 0],
+                [0, 1, 1, 1, 0, 0, 0, 0],
+                [1, 0, 1, 0, 1, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0]]
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_tee_siirto_kaantaa_joka_suunnan_valkoisia(self):
-        self.othello2.tee_siirto("c3", True)
-        lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
-                [1, "o", "_", "o", "_", "o", "_", "_", "_"],
-                [2, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [3, "o", "o", "o", "o", "o", "_", "_", "_"],
-                [4, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [5, "o", "_", "o", "_", "o", "_", "_", "_"],
-                [6, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [7, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [8, "_", "_", "o", "_", "_", "_", "_", "_"]]
+        self.othello2.tee_siirto((2, 2), True)
+        lopputulos = [
+                [2, 0, 2, 0, 2, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [2, 2, 2, 2, 2, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [2, 0, 2, 0, 2, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0]]
         self.assertEqual(self.othello2.hae_pelilauta(), lopputulos)
 
     def test_kaanna_suunta_ei_kaanna_ilman_vastaparia(self):
-        self.othello1.kaanna_suunta((1, 4), (-1, 0), "x", "o")
-        lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
-                [1, "x", "_", "x", "_", "x", "_", "_", "_"],
-                [2, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [3, "x", "o", "_", "o", "x", "_", "_", "_"],
-                [4, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [5, "x", "_", "o", "_", "x", "_", "_", "_"],
-                [6, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [7, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [8, "_", "_", "x", "_", "_", "_", "_", "_"]]
+        koordinaatit, suunta, vastustaja, oma = (0, 3), (-1, 0), 1, 2
+        self.othello1.kaanna_suunta(koordinaatit, suunta, vastustaja, oma)
+        lopputulos = [
+                [1, 0, 1, 0, 1, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [1, 2, 0, 2, 1, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [1, 0, 2, 0, 1, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0]]
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_sallitut_ei_anna_laittomia_siirtoja(self):
@@ -79,16 +80,16 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(sallitut, [])
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
-        self.othello1.tee_siirto("f1", False)
-        lopputulos = [[" ", "a", "b", "c", "d", "e", "f", "g", "h"],
-                [1, "x", "_", "x", "_", "x", "_", "_", "_"],
-                [2, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [3, "x", "o", "_", "o", "x", "_", "_", "_"],
-                [4, "_", "o", "o", "o", "_", "_", "_", "_"],
-                [5, "x", "_", "o", "_", "x", "_", "_", "_"],
-                [6, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [7, "_", "_", "o", "_", "_", "_", "_", "_"],
-                [8, "_", "_", "x", "_", "_", "_", "_", "_"]]
+        self.othello1.tee_siirto((4, 0), False)
+        lopputulos = [
+                [1, 0, 1, 0, 1, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [1, 2, 0, 2, 1, 0, 0, 0],
+                [0, 2, 2, 2, 0, 0, 0, 0],
+                [1, 0, 2, 0, 1, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 2, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0]]
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_ei_siirtoja_on_game_over(self):

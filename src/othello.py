@@ -3,7 +3,7 @@ SUUNNAT = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
 class Othello:
     """Luokka, jonka avulla Othello-peliä pelataan.
-    Vastaavuudet pelinappuloissa: musta = x = 1 = False, valkoinen = o = 2 = True
+    Vastaavuudet pelinappuloissa: musta = 1 = False, valkoinen = 2 = True
 
     Attributes:
         pelilauta: Pelilauta-matriisi, jolla Othello-peli aloitetaan.
@@ -21,23 +21,23 @@ class Othello:
         """Käy läpi pelilaudan ja etsii tutki_suunta-funktion avulla mahdolliset siirrot.
 
         Args:
-            pelaaja: Pelaajan väri, jolta tutkitaan mahdolliset siirrot.
+            pelaaja: Boolean, joka on tekoälyn vuorolla True.
 
         Returns:
             mahdolliset_siirrot: Lista, jossa on sallitut siirrot.
         """
         mahdolliset_siirrot = []
-        for i in range(9):
-            for j in range(9):
+        for i in range(8):
+            for j in range(8):
                 if tekoalyn_vuoro:
-                    oma_maa = "o"
-                    vastustajan_maa = "x"
+                    oma_maa = 2
+                    vastustajan_maa = 1
                 else:
-                    oma_maa = "x"
-                    vastustajan_maa = "o"
+                    oma_maa = 1
+                    vastustajan_maa = 2
                 if self.pelilauta[i][j] == oma_maa:
                     for suunta in SUUNNAT:
-                        sallittu_suunta = self.tutki_suunta((i, j), suunta, vastustajan_maa, "_")
+                        sallittu_suunta = self.tutki_suunta((i, j), suunta, vastustajan_maa, 0)
                         if sallittu_suunta and sallittu_suunta not in mahdolliset_siirrot:
                             mahdolliset_siirrot.append(sallittu_suunta)
         mahdolliset_siirrot.sort()
@@ -50,53 +50,50 @@ class Othello:
         Args:
             lahtopaikka: Tuple, jossa on aloittavat koordinaatit pelilaudalla.
             liike: Tuple, esim. (0, 1), jonka avulla lasketaan liike pelilaudalla.
-            vastustajan_maa: Vastustajan väri.
-            maaranpaa: Merkkijono joka ilmaisee, mitä jollain ruudulla pitäisi mahdollisesti olla.
+            vastustajan_maa: Kokonaisluku 1 tai 2, joka ilmaisee vastustajan merkkiä.
+            maaranpaa: Kokonaisluku 0 - 2 joka ilmaisee, mitä jollain ruudulla pitäisi mahdollisesti olla.
 
         Returns:
-            Maaranpaan sijainti pelilaudalla, jos se löytyy.
+            Maaranpaan koordinaatit pelilaudalla, jos se löytyy.
             None, jos määränpäätä ei löydy.
         """
         rivi = lahtopaikka[0] + liike[0]
         sarake = lahtopaikka[1] + liike[1]
-        if 1 <= rivi <= 8 and 1 <= sarake <= 8 and self.pelilauta[rivi][sarake] == vastustajan_maa:
+        if 0 <= rivi <= 7 and 0 <= sarake <= 7 and self.pelilauta[rivi][sarake] == vastustajan_maa:
             rivi += liike[0]
             sarake += liike[1]
-            while 1 <= rivi <= 8 and 1 <= sarake <= 8:
+            while 0 <= rivi <= 7 and 0 <= sarake <= 7:
                 if self.pelilauta[rivi][sarake] == vastustajan_maa:
                     rivi += liike[0]
                     sarake += liike[1]
                 elif self.pelilauta[rivi][sarake] == maaranpaa:
-                    return f"{self.pelilauta[0][sarake]}{rivi}"
+                    return (rivi, sarake)
                 else:
                     return None
 
-    def tee_siirto(self, syote, tekoalyn_vuoro):
+    def tee_siirto(self, koordinaatit, tekoalyn_vuoro):
         """Huolehtii siirron toteutuksesta.
-        Käyttää apunaan funktioita mahdolliset_siirrot, kaanna_suunta ja laske_tilanne.
+        Käyttää apunaan funktioita mahdolliset_siirrot sekä kaanna_suunta.
 
         Args:
-            syote: Käyttäjän antama syöte muodossa esim. "a1".
-            pelaaja: Pelaaja, joka tekee siirron.
+            koordinaatit: Pelaajan valitseman siirron koordinaatit.
+            tekoalyn_vuoro: Boolean, joka on True tekoälyn vuorolla.
 
         Returns:
             True, jos siirto on sallittu.
             False, jos siirto ei ole sallittu.
         """
         sallitut = self.mahdolliset_siirrot(tekoalyn_vuoro)
-        if syote in sallitut:
-            sarakkeet = "0abcdefgh"
-            sarake = int(sarakkeet.index(syote[0]))
-            rivi = int(syote[1])
+        if koordinaatit in sallitut:
             if tekoalyn_vuoro:
-                oma_maa = "o"
-                vastustajan_maa = "x"
+                oma_maa = 2
+                vastustajan_maa = 1
             else:
-                oma_maa = "x"
-                vastustajan_maa = "o"
-            self.pelilauta[rivi][sarake] = oma_maa
+                oma_maa = 1
+                vastustajan_maa = 2
+            self.pelilauta[koordinaatit[0]][koordinaatit[1]] = oma_maa
             for suunta in SUUNNAT:
-                self.kaanna_suunta((rivi, sarake), suunta, vastustajan_maa, oma_maa)
+                self.kaanna_suunta(koordinaatit, suunta, vastustajan_maa, oma_maa)
             return True
         return False
 
@@ -108,27 +105,19 @@ class Othello:
         Args:
             lahtopaikka: Tuple, jossa on aloittavat koordinaatit pelilaudalla.
             liike: Tuple, esim. (0, 1), jonka avulla lasketaan liike pelilaudalla.
-            vastustajan_maa: Vastustajan väri.
-            oma_maa: Oman maan väri.
+            vastustajan_maa: Kokonaisluku 0 tai 1, joka ilmaisee vastustajan maata.
+            oma_maa: Kokonaisluku 0 tai 1, joka ilmaisee omaa maata.
         """
         vastapari = self.tutki_suunta(lahtopaikka, liike, vastustajan_maa, oma_maa)
         if vastapari:
-            sarakkeet = "0abcdefgh"
             rivi = lahtopaikka[0] + liike[0]
             sarake = lahtopaikka[1] + liike[1]
-            kohderivi = int(vastapari[1])
-            kohdesarake = int(sarakkeet.index(vastapari[0]))
+            kohderivi = int(vastapari[0])
+            kohdesarake = int(vastapari[1])
             while rivi != kohderivi or sarake != kohdesarake:
                 self.pelilauta[rivi][sarake] = oma_maa
                 rivi += liike[0]
                 sarake += liike[1]
-
-    def tulosta_pelilauta(self):
-        """Tulostaa pelilaudan ASCII-grafiikalla."""
-        for rivi in self.pelilauta:
-            for ruutu in rivi:
-                print(ruutu, end=" ")
-            print()
 
     def game_over(self):
         """Tutkii, onko pelissä mahdollista tehdä enää siirtoja.
@@ -142,18 +131,18 @@ class Othello:
         return False
 
     def hae_mustat_ja_valkoiset(self):
-        """Laskee, montako mustaa ja valkoista nappulaa pelilaudalla on
+        """Laskee, montako mustaa (x / 1) ja valkoista (o / 2) nappulaa pelilaudalla on
         ja palauttaa tiedon niiden määrästä.
 
-        Returns: mustat, valkoiset: x- ja o-nappuloiden määrä pelilaudalla.
+        Returns: mustat, valkoiset: Kokonaisluvut, joissa on nollien ja ykkösten määrä pelilaudalla.
         """
         mustat = 0
         valkoiset = 0
-        for i in range(9):
-            for j in range(9):
-                if self.pelilauta[i][j] == "x":
+        for i in range(8):
+            for j in range(8):
+                if self.pelilauta[i][j] == 1:
                     mustat += 1
-                elif self.pelilauta[i][j] == "o":
+                elif self.pelilauta[i][j] == 2:
                     valkoiset += 1
         return mustat, valkoiset
 
