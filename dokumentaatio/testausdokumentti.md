@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-![Kattavuusraportti](testikattavuusraportti 2023-02-25.png)
+![Kattavuusraportti](testikattavuusraportti2023-02-25.png)
 
 Sovelluksessa on tehty yksikkötestaus tiedostoista othello.py sekä othello_ai.py.
 Niissä sijaitsevat pelin toteuttava luokka Othello ja tekoälyn toteuttava luokka OthelloAI.
