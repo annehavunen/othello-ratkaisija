@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-![Kattavuusraportti](kattavuusraportti.png)
+![Kattavuusraportti](testikattavuusraportti 2023-02-25.png)
 
 Sovelluksessa on tehty yksikkötestaus tiedostoista othello.py sekä othello_ai.py.
 Niissä sijaitsevat pelin toteuttava luokka Othello ja tekoälyn toteuttava luokka OthelloAI.
@@ -9,15 +9,14 @@ Pelilautojen ja mahdollisten siirtojen avulla testataan erilaisia skenaarioita
 ja tutkitaan, toimivatko funktiot ennakoidulla tavalla.
 Pelitilanteiden ei ole tarkoitus olla sinänsä realistisia vaan testata funktioita eri näkökulmista.
 
-Luokasta Othello on ainakin haaraumakattavuuden suhteen testattu kaikki muu paitsi pelilaudan tulostava funktio.
+Luokka Othello on testattu ainakin haaraumakattavuuden suhteen kokonaisuudessaan. 
 Testeissä on pyritty ottamaan huomioon erilaisia tilanteita, kuten
 yhden tai useamman nappulan kääntämistä ja pelilaudan kulmapaikkojen läpikäyntiä.
 
 OthelloAI:n testeissä on rakennettu pelitilanteita, joista odotetaan tiettyä tulosta minimax-algoritmilta.
 Testeissä tutkitaan esimerkiksi, tunnistaako algoritmi nopeamman voiton hitaammasta
 ja valitseeko se tasapelin tappion sijaan. Tutkitaan siis, onko algoritmin palauttama siirto todella paras.
-Sellaisia pelitilanteita ei testata, joihin ei liity voitto tai tappio,
-sillä niiden hyvyyttä ei edes voida varmuudella arvioida.
+Sellaisia pelitilanteita ei ole vielä testattu, joihin ei liity voitto tai tappio.
 Pelilaudan tilanteet ovat yksinkertaisia paitsi siksi, että niiden muodostaminen on haastavaa,
 niin myös siksi, että niiden on hyvä olla suhteellisen helposti ihmisen todennettavissa.
 PelilautaStubiin on kommentoitu siirtosarjoja tilanteiden lukemisen helpottamiseksi.

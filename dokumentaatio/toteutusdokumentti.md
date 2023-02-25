@@ -15,9 +15,11 @@ Testit hyödyntävät luokkaa PelilautaStub, jossa on erilaisia pelilautoja tila
 Algoritmin aikavaativuus on eksponentiaalinen suhteessa laskennan syvyyteen.
 Erityisiä tietorakenteita ei esim. listojen lisäksi tarvita.
 
-Työtä voisi parantaa ainakin lisäämällä välimuistin,
-jossa on kutakin pelitilannetta kohti tieto, mikä on ollut paras siirto.
-Tämä tehostaisi minimaxia.
+Työtä voisi parantaa toteuttamalla siirron peruutuksen,
+vaikka toisaalta numpy.arrayn käyttöönotto on jo suunnitteilla.
+Muutosten tavoitteena on minimaxin tehostaminen.
+Pelilaudan muokkaamisen voisi muuttaa hoidettavaksi parametrin välityksellä,
+mikä olisi ehkä logiikaltaan järkevämpää.
 
 ## Lähteet
 
