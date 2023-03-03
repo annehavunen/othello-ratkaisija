@@ -17,6 +17,7 @@ class OthelloAI:
         """Tekoäly, joka laskee tietokoneen siirron.
         Toteutettu minimax-algoritmilla ja tehostettu alfa-beeta-karsinnalla.
         """
+        self.laskuri = 0
     def valitse_siirto(self, syvyys, othello):
         """Aloittaa maksimoijan ensimmäisellä kierroksella ja kutsuu minimaxia.
 
@@ -39,7 +40,7 @@ class OthelloAI:
             for siirto in jarjestetyt_siirrot:
                 kopio_othello = self.kopioi_othello(othello)
                 if siirto != "x":
-                    kopio_othello.tee_siirto(siirto, True)
+                    kopio_othello.tee_siirto(siirto, True, jarjestetyt_siirrot)
                 arvo = self.minimax(i, kopio_othello, alfa, beta, False, parhaat_siirrot)
                 if arvo > paras_arvo:
                     paras_arvo = arvo
@@ -98,7 +99,7 @@ class OthelloAI:
             for siirto in mahdolliset_siirrot:
                 kopio_othello = self.kopioi_othello(othello)
                 if siirto != "x":
-                    kopio_othello.tee_siirto(siirto, True)
+                    kopio_othello.tee_siirto(siirto, True, mahdolliset_siirrot)
                 arvo = self.minimax(syvyys - 1, kopio_othello, alfa, beta, False, parhaat_siirrot)
                 if arvo > paras_arvo:
                     paras_arvo = arvo
@@ -114,7 +115,7 @@ class OthelloAI:
             for siirto in mahdolliset_siirrot:
                 kopio_othello = self.kopioi_othello(othello)
                 if siirto != "x":
-                    kopio_othello.tee_siirto(siirto, False)
+                    kopio_othello.tee_siirto(siirto, False, mahdolliset_siirrot)
                 arvo = self.minimax(syvyys - 1, kopio_othello, alfa, beta, True, parhaat_siirrot)
                 if arvo < paras_arvo:
                     paras_arvo = arvo
@@ -162,7 +163,7 @@ class OthelloAI:
             lauta = othello.hae_pelilauta()
             kopiolauta = deepcopy(lauta)
             kopio_othello = Othello(kopiolauta)
-            kopio_othello.tee_siirto(siirto, maksimoi_pelaaja)
+            kopio_othello.tee_siirto(siirto, maksimoi_pelaaja, mahdolliset_siirrot)
             if maksimoi_pelaaja:
                 vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot(False)
             else:

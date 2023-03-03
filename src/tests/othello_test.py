@@ -29,14 +29,17 @@ class TestOthello(unittest.TestCase):
 
     def test_sallitut_palauttaa_oikean_listan_mustia(self):
         sallitut = self.othello3.mahdolliset_siirrot(False)
+        sallitut.sort()
         self.assertEqual(sallitut, [(0, 0), (0, 7), (1, 0), (1, 1), (1, 7), (2, 3), (7, 1), (7, 7)])
 
     def test_sallitut_palauttaa_oikean_listan_valkoisia(self):
         sallitut = self.othello4.mahdolliset_siirrot(True)
+        sallitut.sort()
         self.assertEqual(sallitut, [(0, 0), (0, 7), (1, 0), (1, 1), (1, 7), (2, 3), (7, 1), (7, 7)])
 
     def test_tee_siirto_kaantaa_joka_suunnan_mustia(self):
-        self.othello1.tee_siirto((2, 2), False)
+        mahdolliset_siirrot = self.othello1.mahdolliset_siirrot(False)
+        self.othello1.tee_siirto((2, 2), False, mahdolliset_siirrot)
         lopputulos = [
                 [1, 0, 1, 0, 1, 0, 0, 0],
                 [0, 1, 1, 1, 0, 0, 0, 0],
@@ -49,7 +52,8 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(self.othello1.hae_pelilauta(), lopputulos)
 
     def test_tee_siirto_kaantaa_joka_suunnan_valkoisia(self):
-        self.othello2.tee_siirto((2, 2), True)
+        mahdolliset_siirrot = self.othello2.mahdolliset_siirrot(True)
+        self.othello2.tee_siirto((2, 2), True, mahdolliset_siirrot)
         lopputulos = [
                 [2, 0, 2, 0, 2, 0, 0, 0],
                 [0, 2, 2, 2, 0, 0, 0, 0],
@@ -80,7 +84,8 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(sallitut, [])
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
-        self.othello1.tee_siirto((4, 0), False)
+        mahdolliset_siirrot = self.othello1.mahdolliset_siirrot(False)
+        self.othello1.tee_siirto((1, 0), False, mahdolliset_siirrot) # (4, 0)
         lopputulos = [
                 [1, 0, 1, 0, 1, 0, 0, 0],
                 [0, 2, 2, 2, 0, 0, 0, 0],

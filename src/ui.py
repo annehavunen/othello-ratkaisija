@@ -40,7 +40,7 @@ class UI:
                 else:
                     koordinaatit = self.hae_tekoalyn_siirto()
                     syote = self.koordinaatit_merkkijonoksi(koordinaatit)
-                laillinen = self.othello.tee_siirto(koordinaatit, tekoalyn_vuoro)
+                laillinen = self.othello.tee_siirto(koordinaatit, tekoalyn_vuoro, sallitut)
                 if not laillinen:
                     print("Siirto ei ole sallittu.")
                 else:
@@ -53,7 +53,6 @@ class UI:
         kopiolauta = deepcopy(lauta)
         kopio_othello = Othello(kopiolauta)
         siirto = self.othello_ai.valitse_siirto(20, kopio_othello)
-        print("Tekoälyn siirto", siirto)
         return siirto
 
     def vaihda_vuoroa(self, tekoalyn_vuoro):

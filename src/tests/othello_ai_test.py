@@ -11,6 +11,9 @@ class TestOthello(unittest.TestCase):
         pelilauta1 = PelilautaStub().hae_pelilauta1()
         self.othello1 = Othello(pelilauta1)
 
+        pelilauta6 = PelilautaStub().hae_pelilauta6()
+        self.othello6 = Othello(pelilauta6)
+
         pelilauta7 = PelilautaStub().hae_pelilauta7()
         self.othello7 = Othello(pelilauta7)
 
@@ -50,3 +53,7 @@ class TestOthello(unittest.TestCase):
     def test_heuristinen_arvio_laskee_oikein(self):
         arvio = self.othello_ai.arvioi_pelilauta(self.othello1)
         self.assertEqual(arvio, -234)
+
+    def test_valitaan_suurin_heuristinen_arvio(self):
+        siirto = self.othello_ai.valitse_siirto(4, self.othello6)
+        pass
