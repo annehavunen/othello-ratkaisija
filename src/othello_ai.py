@@ -17,7 +17,6 @@ class OthelloAI:
         """Tekoäly, joka laskee tietokoneen siirron.
         Toteutettu minimax-algoritmilla ja tehostettu alfa-beeta-karsinnalla.
         """
-        self.laskuri = 0
     def valitse_siirto(self, syvyys, othello):
         """Aloittaa maksimoijan ensimmäisellä kierroksella ja kutsuu minimaxia.
 
@@ -160,9 +159,7 @@ class OthelloAI:
         mahdolliset_siirrot = othello.mahdolliset_siirrot(maksimoi_pelaaja)
         maarat_siirrot = []
         for siirto in mahdolliset_siirrot:
-            lauta = othello.hae_pelilauta()
-            kopiolauta = deepcopy(lauta)
-            kopio_othello = Othello(kopiolauta)
+            kopio_othello = self.kopioi_othello(othello)
             kopio_othello.tee_siirto(siirto, maksimoi_pelaaja, mahdolliset_siirrot)
             if maksimoi_pelaaja:
                 vastustajan_mahdolliset = kopio_othello.mahdolliset_siirrot(False)
