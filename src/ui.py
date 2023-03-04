@@ -4,11 +4,18 @@ from othello_ai import OthelloAI
 
 
 class UI:
+    """Othello-pelin käyttöliittymästä vastaava luokka."""
     def __init__(self, pelilauta):
+        """Luokan konstruktori, joka luo käyttöliittymäolion.
+
+        Args:
+            pelilauta: 2-ulotteinen taulukko, joka kuvaa pelin aloittavaa pelilautaa.
+        """
         self.othello = Othello(pelilauta)
         self.othello_ai = OthelloAI()
 
     def kaynnista(self):
+        """Peliä pyörittävä silmukka."""
         tekoalyn_vuoro = False
         while True:
             print("Lopeta: q. Syöte esim.: d3")
@@ -49,6 +56,11 @@ class UI:
                 print()
 
     def hae_tekoalyn_siirto(self):
+        """Hakee tekoälyn siirron valkoisen vuorolla.
+
+        Returns:
+            siirto: Tuple, jossa on valitun siirron koordinaatit.
+        """
         lauta = self.othello.hae_pelilauta()
         kopiolauta = deepcopy(lauta)
         kopio_othello = Othello(kopiolauta)
@@ -56,6 +68,14 @@ class UI:
         return siirto
 
     def vaihda_vuoroa(self, tekoalyn_vuoro):
+        """Vaihtaa muuttujaan tiedon, onko tekoälyn vai pelaajan vuoro.
+
+        Args:
+            tekoalyn_vuoro: Boolean, joka on True tekoälyn vuorolla.
+
+        Returns:
+            tekoalyn_vuoro: Boolean, joka on True tekoälyn vuorolla.
+        """
         if tekoalyn_vuoro:
             tekoalyn_vuoro = False
         else:
@@ -63,6 +83,11 @@ class UI:
         return tekoalyn_vuoro
 
     def tulosta_siirrot(self, siirrot):
+        """Tulostaa pelaajan lailliset siirrot muodossa "a1" aakkosjärjestyksessä.
+
+        Args:
+            siirrot: Lista, jossa on pelaajan lailliset siirrot koordinaatteina.
+        """
         aakkosjarjestyksessa = []
         for siirto in siirrot:
             aakkosjarjestyksessa.append(self.koordinaatit_merkkijonoksi(siirto))
@@ -72,12 +97,27 @@ class UI:
         print(aakkosjarjestyksessa[-1])
 
     def merkkijono_koordinaateiksi(self, syote):
+        """Muuttaa muodossa "a1" olevan syötteen pelilaudan koordinaateiksi.
+
+        Args:
+            syote: Muodossa "a1" oleva syöte, joka kuvaa pelaajan siirtoa.
+        Returns:
+            (rivi, sarake): Tuple, jossa on koordinaatit.
+        """
         sarakkeet = "abcdefgh"
         rivi = int(syote[1]) - 1
         sarake = sarakkeet.find(syote[0])
         return (rivi, sarake)
 
     def koordinaatit_merkkijonoksi(self, koordinaatit):
+        """Muuttaa pelilaudan koordinaatit muotoon "a1".
+
+        Args:
+            koordinaatit: Tuple, jossa on koordinaatit.
+
+        Returns:
+            Pelilaudan koordinaatit merkkijonoksi muutettuna.
+        """
         sarakkeet = "abcdefgh"
         return f"{sarakkeet[koordinaatit[1]]}{koordinaatit[0] + 1}"
 

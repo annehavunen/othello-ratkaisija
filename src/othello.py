@@ -13,7 +13,7 @@ class Othello:
         """Luokan konstruktori, joka luo uuden Othello-pelin.
 
         Args:
-            pelilauta: Pelilauta-matriisi, jolla Othello-peli aloitetaan.
+            pelilauta: 2-ulotteinen taulukko, joka kuvaa pelin aloittavaa pelilautaa.
         """
         self.pelilauta = pelilauta
 
@@ -40,7 +40,6 @@ class Othello:
                         sallittu_suunta = self.tutki_suunta((i, j), suunta, vastustajan_maa, 0)
                         if sallittu_suunta and sallittu_suunta not in mahdolliset_siirrot:
                             mahdolliset_siirrot.append(sallittu_suunta)
-        # mahdolliset_siirrot.sort()
         return mahdolliset_siirrot
 
     def tutki_suunta(self, lahtopaikka, liike, vastustajan_maa, maaranpaa):
@@ -71,19 +70,19 @@ class Othello:
                 else:
                     return None
 
-    def tee_siirto(self, koordinaatit, tekoalyn_vuoro, sallitut_siirrot): # sallitut_siirrot
+    def tee_siirto(self, koordinaatit, tekoalyn_vuoro, sallitut_siirrot):
         """Huolehtii siirron toteutuksesta.
         Käyttää apunaan funktioita mahdolliset_siirrot sekä kaanna_suunta.
 
         Args:
             koordinaatit: Pelaajan valitseman siirron koordinaatit.
             tekoalyn_vuoro: Boolean, joka on True tekoälyn vuorolla.
+            sallitut_siirrot: Lista, jossa on pelaajan lailliset siirrot.
 
         Returns:
             True, jos siirto on sallittu.
             False, jos siirto ei ole sallittu.
         """
-        # sallitut = self.mahdolliset_siirrot(tekoalyn_vuoro) # pois tarkistus täältä? Ehkä parametrina?
         if koordinaatit in sallitut_siirrot:
             if tekoalyn_vuoro:
                 oma_maa = 2
@@ -160,4 +159,9 @@ class Othello:
         return "tasapeli"
 
     def hae_pelilauta(self):
+        """Palauttaa nykyistä pelitilannetta kuvaavan 2-ulotteisen listan.
+
+        Returns:
+            self.pelilauta: 2-ulotteinen lista, jossa on othello-pelin pelitilanne.
+        """
         return self.pelilauta
