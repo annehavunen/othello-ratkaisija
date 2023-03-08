@@ -19,6 +19,7 @@ class OthelloAI:
         """
     def valitse_siirto(self, syvyys, othello):
         """Aloittaa maksimoijan ensimmäisellä kierroksella ja kutsuu minimaxia.
+        Ensimmäisellä kierroksella on aina vähintään yksi siirto.
 
         Args:
             syvyys: Kokonaisluku, jossa on suurin mahdollinen laskentasyvyys.
@@ -38,8 +39,7 @@ class OthelloAI:
             start = time.time()
             for siirto in jarjestetyt_siirrot:
                 kopio_othello = self.kopioi_othello(othello)
-                if siirto != "x":
-                    kopio_othello.tee_siirto(siirto, True, jarjestetyt_siirrot)
+                kopio_othello.tee_siirto(siirto, True, jarjestetyt_siirrot)
                 arvo = self.minimax(i, kopio_othello, alfa, beta, False, parhaat_siirrot)
                 if arvo > paras_arvo:
                     paras_arvo = arvo
