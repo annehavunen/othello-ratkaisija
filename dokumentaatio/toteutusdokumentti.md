@@ -15,9 +15,11 @@ Testit hyödyntävät luokkaa PelilautaStub, jossa on erilaisia pelilautoja tila
 Algoritmin aikavaativuus on eksponentiaalinen suhteessa laskennan syvyyteen.
 Erityisiä tietorakenteita ei esim. listojen lisäksi tarvita.
 
-Työtä voisi parantaa toteuttamalla siirron peruutuksen,
-vaikka toisaalta numpy.arrayn käyttöönotto on jo suunnitteilla.
-Muutosten tavoitteena on minimaxin tehostaminen.
+Koska laskentasyvyys on oleellinen tekijä tekoälyn hyvyydessä, työtä voisi parantaa optimoimalla koodia lisää.
+Esimerkiksi siirron peruutus tai numpy.arrayn käyttöönotto saattaisivat tehostaa laskentaa.
+Toisaalta pelkästään 2-ulotteisen listan muuttaminen numpy.arrayksi ja deepcopyn vaihtaminen tätä vastaavaksi copyksi
+heikensivät tulosta. Toinen tekoälyn hyvyyttä parantava asia on toimiva heuristinen arviointi,
+joten siihen voisi panostaa enemmän. Nykyinen heuristiikka on varsin yksinkertainen.
 Pelilaudan muokkaamisen voisi muuttaa hoidettavaksi parametrin välityksellä,
 mikä olisi ehkä logiikaltaan järkevämpää.
 

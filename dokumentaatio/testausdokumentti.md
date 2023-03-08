@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-![Kattavuusraportti](testikattavuusraportti2023-02-25.png)
+![Kattavuusraportti](testikattavuusraportti2023-03-08.png)
 
 Sovelluksessa on tehty yksikkötestaus tiedostoista othello.py sekä othello_ai.py.
 Niissä sijaitsevat pelin toteuttava luokka Othello ja tekoälyn toteuttava luokka OthelloAI.
@@ -14,9 +14,23 @@ Testeissä on pyritty ottamaan huomioon erilaisia tilanteita, kuten
 yhden tai useamman nappulan kääntämistä ja pelilaudan kulmapaikkojen läpikäyntiä.
 
 OthelloAI:n testeissä on rakennettu pelitilanteita, joista odotetaan tiettyä tulosta minimax-algoritmilta.
-Testeissä tutkitaan esimerkiksi, tunnistaako algoritmi nopeamman voiton hitaammasta
-ja valitseeko se tasapelin tappion sijaan. Tutkitaan siis, onko algoritmin palauttama siirto todella paras.
-Sellaisia pelitilanteita ei ole vielä testattu, joihin ei liity voitto tai tappio.
+Testeissä tutkitaan, valitseeko minimax seuraavien sääntöjen mukaan:
+
+- voitto tappion sijaan
+- voitto tasapelin sijaan
+- nopeampi voitto eikä hitaampi voitto
+- tasapeli tappion sijaan
+- hitaampi voitto eikä nopeampi tappio
+- paras heuristinen arvio, jos tilanteeseen ei liity voitto eikä tappio
+
+Heuristisesta arviosta on testi, joka alkaa tilanteesta, jossa musta on tehnyt siirron c4.
+Minimax tutkii pelitilanteita syvyydelle kolme asti ja valitsee niistä parhaan.
+Tilanne on havainnollistettu ilman alfa-beeta-karsintaa alla olevassa kuvassa.
+Ylimpänä on tekoälyn valitsema siirto, joka vastaa siirtoa e3,
+eli pelilaudan koordinaatteina (2, 4). Alin rivi solmuja on aseteltu pystysuoraan, jotta ne mahtuisivat kuvaan.
+
+![Minimax-pelipuu](minimax_pelipuu.png)
+
 Pelilaudan tilanteet ovat yksinkertaisia paitsi siksi, että niiden muodostaminen on haastavaa,
 niin myös siksi, että niiden on hyvä olla suhteellisen helposti ihmisen todennettavissa.
 PelilautaStubiin on kommentoitu siirtosarjoja tilanteiden lukemisen helpottamiseksi.
