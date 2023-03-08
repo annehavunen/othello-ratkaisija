@@ -154,3 +154,16 @@ class PelilautaStub:
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0]]
         return pelilauta
+
+    def hae_pelilauta13(self):
+        """Aloittava voittosiirto: h1"""
+        pelilauta = [
+                [1, 2, 1, 1, 1, 1, 2, 0],
+                [1, 2, 1, 2, 1, 2, 2, 1],
+                [1, 2, 1, 2, 1, 2, 1, 1],
+                [1, 2, 1, 2, 1, 2, 2, 1],
+                [1, 2, 1, 2, 1, 2, 1, 2],
+                [1, 2, 1, 2, 1, 2, 2, 2],
+                [1, 2, 1, 2, 1, 2, 1, 0],
+                [1, 2, 1, 2, 1, 1, 2, 0]]
+        return pelilauta

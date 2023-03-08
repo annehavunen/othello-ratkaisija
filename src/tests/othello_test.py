@@ -85,7 +85,7 @@ class TestOthello(unittest.TestCase):
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
         mahdolliset_siirrot = self.othello1.mahdolliset_siirrot(False)
-        self.othello1.tee_siirto((1, 0), False, mahdolliset_siirrot) # (4, 0)
+        self.othello1.tee_siirto((1, 0), False, mahdolliset_siirrot)
         lopputulos = [
                 [1, 0, 1, 0, 1, 0, 0, 0],
                 [0, 2, 2, 2, 0, 0, 0, 0],
