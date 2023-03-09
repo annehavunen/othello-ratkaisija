@@ -39,7 +39,7 @@ class UI:
                     syote = input("Musta, anna syöte: ")
                     if syote == "q":
                         break
-                    if len(syote) != 2 or syote[0] not in "abcdefgh" or int(syote[1]) not in range(1, 9):
+                    if len(syote) != 2 or syote[0] not in "abcdefgh" or syote[1] not in "0123456789":
                         print("Siirto ei ole sallittu")
                         print()
                         continue
