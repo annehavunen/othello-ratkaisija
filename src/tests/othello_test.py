@@ -68,6 +68,8 @@ class TestOthello(unittest.TestCase):
     def test_kaanna_suunta_ei_kaanna_ilman_vastaparia(self):
         koordinaatit, suunta, vastustaja, oma = (0, 3), (-1, 0), 1, 2
         self.othello1.kaanna_suunta(koordinaatit, suunta, vastustaja, oma)
+        koordinaatit, suunta, vastustaja, oma = (0, 3), (0, 1), 2, 1
+        self.othello1.kaanna_suunta(koordinaatit, suunta, vastustaja, oma)
         lopputulos = [
                 [1, 0, 1, 0, 1, 0, 0, 0],
                 [0, 2, 2, 2, 0, 0, 0, 0],
@@ -85,7 +87,9 @@ class TestOthello(unittest.TestCase):
 
     def test_laiton_siirto_ei_muuta_pelilautaa(self):
         mahdolliset_siirrot = self.othello1.mahdolliset_siirrot(False)
-        self.othello1.tee_siirto((1, 0), False, mahdolliset_siirrot)
+        self.othello1.tee_siirto((4, 1), False, mahdolliset_siirrot)
+        mahdolliset_siirrot = self.othello1.mahdolliset_siirrot(True)
+        self.othello1.tee_siirto((4, 1), True, mahdolliset_siirrot)
         lopputulos = [
                 [1, 0, 1, 0, 1, 0, 0, 0],
                 [0, 2, 2, 2, 0, 0, 0, 0],
