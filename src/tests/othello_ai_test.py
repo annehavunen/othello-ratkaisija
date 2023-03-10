@@ -58,8 +58,8 @@ class TestOthello(unittest.TestCase):
         self.assertEqual(siirto, (0, 7))
 
     def test_heuristinen_arvio_laskee_oikein(self):
-        arvio = self.othello_ai.arvioi_pelilauta(self.othello1)
-        self.assertEqual(arvio, -234)
+        arvio = self.othello_ai.arvioi_pelilauta(self.othello13)
+        self.assertEqual(arvio, -500)
 
     def test_valitaan_suurin_heuristinen_arvio(self):
         mahdolliset_siirrot = self.othello6.mahdolliset_siirrot(False)
