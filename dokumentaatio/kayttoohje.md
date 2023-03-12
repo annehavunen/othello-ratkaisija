@@ -4,7 +4,7 @@ Ohjeissa oletetaan, että koneelle on asennettu Poetry ja vähintään Pythonin 
 
 ### Asennus
 
-1. Kloonaa projekti komennolla:
+1. Lataa projektin lähdekoodi valitsemalla GitHubissa viimeisin release ja jälkeen *Assets*-osion alta *Source code*. Vaihtoehtoisesti kloonaa projekti komennolla:
 > git clone git<span>@</span>github.com:annehavunen/othello-ratkaisija.git
 
 2. Siirry kansion sisään. Asenna riippuvuudet komennolla:

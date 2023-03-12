@@ -3,7 +3,7 @@ SUUNNAT = [(0, -1), (0, 1), (-1, 0), (1, 0), (-1, -1), (-1, 1), (1, -1), (1, 1)]
 
 class Othello:
     """Luokka, jonka avulla Othello-peliä pelataan.
-    Vastaavuudet pelinappuloissa: musta = 1 = False, valkoinen = 2 = True
+    Vastaavuudet pelinappuloissa: musta = 1 = False, valkoinen = 2 = True.
 
     Attributes:
         pelilauta: Pelilauta-matriisi, jolla Othello-peli aloitetaan.
@@ -13,7 +13,7 @@ class Othello:
         """Luokan konstruktori, joka luo uuden Othello-pelin.
 
         Args:
-            pelilauta: 2-ulotteinen taulukko, joka kuvaa pelin aloittavaa pelilautaa.
+            pelilauta: 2-ulotteinen lista, joka kuvaa pelin aloittavaa pelilautaa.
         """
         self.pelilauta = pelilauta
 
@@ -130,10 +130,10 @@ class Othello:
         return False
 
     def hae_mustat_ja_valkoiset(self):
-        """Laskee, montako mustaa (x / 1) ja valkoista (o / 2) nappulaa pelilaudalla on
+        """Laskee, montako mustaa (1) ja valkoista (2) nappulaa pelilaudalla on
         ja palauttaa tiedon niiden määrästä.
 
-        Returns: mustat, valkoiset: Kokonaisluvut, joissa on nollien ja ykkösten määrä pelilaudalla.
+        Returns: mustat, valkoiset: Kokonaisluvut, joissa on ykkösten ja kakkosten määrä pelilaudalla.
         """
         mustat = 0
         valkoiset = 0

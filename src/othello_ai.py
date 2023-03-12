@@ -26,7 +26,7 @@ class OthelloAI:
             othello: Othello-olio, joka sisältää nykyisen pelitilanteen.
 
         Returns:
-            paras_siirto: Tuple, joka on tekoälyn valitseman siirron koordinaatit.
+            paras_siirto: Tuple, jossa on tekoälyn valitseman siirron koordinaatit.
         """
         parhaat_siirrot = {}
         alfa = -100000
@@ -147,7 +147,7 @@ class OthelloAI:
 
     def hae_jarjestetyt_siirrot(self, othello, maksimoi_pelaaja):
         """Palauttaa pelaajan mahdolliset siirrot järjestyksessä, jossa ensin on siirrot,
-        jotka kääntävät vähiten vastustajan nappuloita.
+        joiden jälkeen vastustajalla on vähiten mahdollisia siirtoja.
 
         Args:
             othello: Othello-olio, joka sisältää nykyisen pelitilanteen.

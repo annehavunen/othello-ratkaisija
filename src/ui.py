@@ -9,7 +9,7 @@ class UI:
         """Luokan konstruktori, joka luo käyttöliittymäolion.
 
         Args:
-            pelilauta: 2-ulotteinen taulukko, joka kuvaa pelin aloittavaa pelilautaa.
+            pelilauta: 2-ulotteinen lista, joka kuvaa pelin aloittavaa pelilautaa.
         """
         self.othello = Othello(pelilauta)
         self.othello_ai = OthelloAI()
