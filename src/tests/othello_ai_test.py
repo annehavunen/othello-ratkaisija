@@ -4,7 +4,7 @@ from othello_ai import OthelloAI
 from pelilauta_stub import PelilautaStub
 
 
-class TestOthello(unittest.TestCase):
+class TestOthelloAI(unittest.TestCase):
     def setUp(self):
         self.othello_ai = OthelloAI()
 
